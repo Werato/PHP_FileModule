@@ -33,7 +33,7 @@ class File
 
 	}
 
-	function saveĪmg($object, $objectID) {
+	function saveImg($object, $objectID) {
 		
 		$blob = $this->DB->escape_string(file_get_contents($_FILES["img"]["tmp_name"]));
 		$mimeType = $_FILES["img"]["type"];
@@ -42,7 +42,7 @@ class File
 		$content = $this->DB->query("INSERT INTO `files` SET Name ='".$name."', MnimeType='".$mimeType."',
 		Object='".$object."',File = '".$blob."', ObjectID = ".$objectID) or die($db->error);
 
-		$src = $this->WebPage."module/file/img.php?id=".$this->DB->insert_id;
+		$src = $this->WebPage."module/File/View/img.php?id=".$this->DB->insert_id;
 		$content .= '<img src="'.$src.'">';
 
 		$js = "<script>
